@@ -1,6 +1,6 @@
-//my-app/App.tsx
+//my-app/App.tsx   //zare_nk_040926_okk
 import { useState } from "react";
-import { useFonts } from "expo-font"; //zare_nk_040611_added
+import { useFonts } from "expo-font";  
 import AppNavigator from "./src/navigation/AppNavigator";
 import { lightTheme, darkTheme } from "./src/constants/theme";
 import { ThemeContext } from "./src/context/ThemeContext";

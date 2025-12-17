@@ -1,3 +1,4 @@
+//zare_nk_040926_okk
 import React, { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -9,11 +10,11 @@ import { NextJsApiAuthUrl } from "../constants/Urls";
 import { protectedScreens } from "../utils/protectedRoutes";
 import type { RouteProp } from "@react-navigation/native";
 
-type Navigation = NativeStackNavigationProp<RootStackParamList, "Splash">;
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Splash">;
 type SplashRoute = RouteProp<RootStackParamList, "Splash">;
 
 export default function SplashScreen() {
-  const navigation = useNavigation<Navigation>(); 
+  const navigation = useNavigation<NavigationProp>(); 
   const route = useRoute<SplashRoute>();
 
   useEffect(() => {

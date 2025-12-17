@@ -1,4 +1,4 @@
-// src\components\ReusableButton.tsx
+// src\components\ReusableButton.tsx    //zare_nk_040926_okk
 import {
   Text,
   TouchableOpacity,
@@ -7,7 +7,7 @@ import {
   TextStyle,
   DimensionValue,
 } from 'react-native';
-
+   
 type Props = {
   title: string;
   onPress: () => void;

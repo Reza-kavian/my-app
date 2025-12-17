@@ -1,11 +1,11 @@
-// src/navigation/AppNavigator.tsx   //ok(040530)
+// src/navigation/AppNavigator.tsx    //zare_nk_040926_okk
 // import { NavigationContainer } from "@react-navigation/native";  //zare_nk_040604_commented
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "../screens/SplashScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import LoginScreen from "../screens/LoginScreen";
-import HomeScreen from "../screens/HomeScreen"; //zare_nk_040611_added
+import HomeScreen from "../screens/HomeScreen";  //zare_nk_040611_added
 import AuthCallbackScreen from "../screens/AuthCallbackScreen"; //zare_nk_040608_added
 
 import type { RootStackParamList } from "../types/navigation";
@@ -25,7 +25,7 @@ const AppNavigator = () => {
         header: (props) => <MyCustomHeader {...props} />, //zare_nk_040530_added
       })}
     >
-       <Stack.Screen name="Home" component={HomeScreen} />  
+      <Stack.Screen name="Home" component={HomeScreen} />  
 
       <Stack.Screen name="Splash" component={SplashScreen} />
 

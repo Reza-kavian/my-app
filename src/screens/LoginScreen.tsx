@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_040926_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View,
@@ -63,7 +63,8 @@ Props) {
   }, [step]);
 
   useEffect(() => {
-    //zare_nk_040531_nokteh(dar har render age timer ya removTimer tagheir kard in useEffect amal mokoneh,va age step barabare secondPage bood meghdare state timer ra age removTimer true bood sefr mikoneh, vagarnah yeki kam mikoneh)
+    //zare_nk_040531_nokteh(dar har render age timer ya removTimer tagheir kard in useEffect amal mokoneh,
+    //va age step barabare secondPage bood meghdare state timer ra age removTimer true bood sefr mikoneh, vagarnah yeki kam mikoneh)
     if (step !== "secondPage") return;
     intervalRef.current = setInterval(() => {
       setTimer((prev) => {
@@ -129,11 +130,19 @@ Props) {
         "040530-03-JSON.stringify(ApiLoginUser2Result): " +
           JSON.stringify(ApiLoginUser2Result)
       );
-      if (res.status === 200) {
-        if (ApiLoginUser2Result.status == 0) {
+      //zare_nk_0409225_alan
+      //040530-03-JSON.stringify(ApiLoginUser2Result): {"status":-9,"message":"","data":null,"errors":["کد پیامکی وارد شده اشتباه است"]}
+      //040530-03-JSON.stringify(ApiLoginUser2Result): {"status":-11,"message":"","data":null,"errors":["کد ورود شما منقضی شده است. لطفا مجددا درخواست کد پیامکی کنید"]}
+      //040530-03-JSON.stringify(ApiLoginUser2Result): {"status":0,"message":"",
+      // "data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA"}
+      // ,"errors":[]}
+      // if (res.status === 200) {
+      if (res.status === 200 && ApiLoginUser2Result.status == 0) {
+        // if (ApiLoginUser2Result.status == 0) {
           let token = ApiLoginUser2Result.data.token;
           console.log("040530-03-token: " + token);
-          try {
+          //040530-03-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA
+          // try {
             const response = await fetch(NextJsApiAuthUrl + "verifyToken", {
               ////zare_nk_040428_added_nokteh(dar reactnative ke kollan samte client hast code samte server ke behesh api bezanim nadarin pas masire verifyToken bayad dar yek projeye dige mesle nextjs ya .net core bayad bashe va az reactnative faghat behesh api bezanim)
               method: "POST",
@@ -150,10 +159,12 @@ Props) {
                 Date.now() + 1 * 60 * 1000
               ).toISOString();
               // const expires =data.decoded.exp;  //zare_nk_040219-nokteh(zamane monghazi ra az dadeye parsafar taein kardam)
-
-              await AsyncStorage.setItem("token", token); //moadele cooki dar reactnative ast
+              let tokenni = await AsyncStorage.getItem("token");  //zare_nk_040925_added_pakkardani
+              console.log("0-zare_nk_040925-tokenni is: "+  tokenni  );//zare_nk_040925_added_pakkardani
+              await AsyncStorage.setItem("token", token); //moadele cooki dar reactnative ast 
               await AsyncStorage.setItem("token_expires", expires);
-
+              tokenni = await AsyncStorage.getItem("token");//zare_nk_040925_added_pakkardani
+              console.log("1-zare_nk_040925-tokenni is: "+  tokenni  );//zare_nk_040925_added_pakkardani
               //// 2. گرفتن مسیر ریدایرکت (اگر از قبل ذخیره کرده باشی)
               //   const redirect =
               //     (await AsyncStorage.getItem("redirect")) || "Home";
@@ -180,35 +191,36 @@ Props) {
               navigation.replace(redirect); // نیازمند useNavigation از React Navigation
             } else {
               console.log("❌ verifyToken failed");
+              setSmsError("خطا در ورود با کد تایید");  //zare_nk_040926_added
               await AsyncStorage.removeItem("token");
               alert("❌ verifyToken failed");
             }
-          } catch (error) {
-            alert("catch in checkSmsForLogin-AsyncStorage.removeItem('token')");
-            console.error("❌ خطا در JWT:", error);
-            await AsyncStorage.removeItem("token"); //zare_nk_040429_added
-            setError("متاسفانه خطایی رخ داده است999:" + error);
-          }
-        } else {
-          alert(
-            "data.status != 0 in checkSmsForLogin-AsyncStorage.removeItem('token')"
-          );
-          await AsyncStorage.removeItem("token"); //zare_nk_040429_added
-          setError("متاسفانه خطایی رخ داده است34:eeee" + data.errors);
-        }
+          // } catch (error) {
+          //   alert("catch in checkSmsForLogin-AsyncStorage.removeItem('token')");
+          //   console.error("❌ خطا در JWT:", error);  //[TypeError: "tokenni" is read-only]
+          //   await AsyncStorage.removeItem("token"); //zare_nk_040429_added
+          //   setError("متاسفانه خطایی رخ داده است999:" + error);
+          // }
+        // } else {  //ok2
+        //   alert(
+        //     "data.status != 0 in checkSmsForLogin-AsyncStorage.removeItem('token')"
+        //   );
+        //   await AsyncStorage.removeItem("token"); //zare_nk_040429_added 
+        //   setError("متاسفانه خطایی رخ داده است34:eeee" + ApiLoginUser2Result.errors[0]);    //zare_nk_040925_updated 
+        // }
       } else {
         alert(
-          "res.status !== 200 in checkSmsForLogin-AsyncStorage.removeItem('token')"
+          "res.status !== 200 or data.status != 0  in checkSmsForLogin-AsyncStorage.removeItem('token')"
         );
         console.log("zare_nk_040218-!!response.ok");
         await AsyncStorage.removeItem("token");
-        setError("متاسفانه خطایی رخ داده است35");
+        setError("متاسفانه خطایی رخ داده است34:eeee" + ApiLoginUser2Result.errors[0]);
       }
 
       ////zare_nk_040428_added_end
     } catch (err: any) {
       alert(
-        "second catch in checkSmsForLogin-AsyncStorage.removeItem('token')"
+        "second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: "+err
       );
       await AsyncStorage.removeItem("token");
       setSmsError(err.response?.data?.message || "خطا در ورود با کد تایید");
@@ -224,13 +236,15 @@ Props) {
     axios.post(NextJsApiUrl + "Api_SendCode", { mobile: mobileVal }); //zare_nk_040530_added
     // ارسال مجدد کد به موبایل
   };
+
   ////zare_nk_040603_added_st(rahe1)
   useEffect(() => {
-    const subscription = Linking.addListener("url", ({ url }) => {
+    const subscription = Linking.addListener("url", async ({ url }) => {
       const token = new URL(url).searchParams.get("token");
       if (token) {
         console.log("040603_JWT:", token);
         // ذخیره توکن در AsyncStorage یا state
+        await AsyncStorage.setItem("token", token); //zare_nk_040926_added
       }
     });
 
@@ -262,7 +276,7 @@ Props) {
   //   // window.location.href = `https://testotm.sarinmehr.com/api/auth/google`; //zare_nk_040603_added
   // };
 
-  const handleGoogleLogin = async () => {
+  const handleGoogleLogin = async () => {  //okk
     const url = "https://testotm.sarinmehr.com/api/auth/google?source=mobile";
     //  const url = "https://localhost:3000/api/auth/google?source=mobile";
     // const url = "https://192.168.3.226:3000/api/auth/google?source=mobile";
@@ -276,6 +290,7 @@ Props) {
     }
   };
   ////zare_nk_040603_added_end
+
   return (
     <View style={styles.container}>
       {error && <Text style={styles.error}>{error}</Text>}

@@ -1,0 +1,1 @@
+my-app is an expo reactnative app that beautiful navbar is used with login and logout button

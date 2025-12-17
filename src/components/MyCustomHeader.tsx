@@ -1,4 +1,4 @@
-// src/components/MyCustomHeader.tsx
+// src/components/MyCustomHeader.tsx    //zare_nk_040926_okk
 import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
@@ -27,7 +27,8 @@ import { HeaderBackButton } from "@react-navigation/elements"; //zare_nk_040530_
 // const navigation = useNavigation<NavigationProp>();
 // const route = useRoute<WelcomeRoute>();
 //zare_nk_040530_commented_end(rahe1)
-//zare_nk_040530_added_st(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-parameterhaye voroodi ra barname automat az React Navigation migire)
+//zare_nk_040530_added_st(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
+// parameterhaye voroodi ra barname automat az React Navigation migire)
 import { NativeStackHeaderProps } from "@react-navigation/native-stack"; //zare_nk_040530_added
 const MyCustomHeader = ({
   navigation,
@@ -35,7 +36,8 @@ const MyCustomHeader = ({
   route,
   options,
 }: NativeStackHeaderProps) => {
-  //zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-parameterhaye voroodi ra barname automat az React Navigation migire)
+  //zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
+  // parameterhaye voroodi ra barname automat az React Navigation migire)
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   ////zare_nk_040431_added_st
   const [usersCodeOrName, setUsersCodeOrName] = useState({
@@ -65,8 +67,9 @@ const MyCustomHeader = ({
                       token,
                     }
                   );
-                  const data = res.data;
+                  const data = res.data;   
                   console.log("040530-data: " + JSON.stringify(data));
+                  //{"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
                   if (
                     res.status === 200 //&&
                     //   res.data &&
@@ -138,7 +141,7 @@ const MyCustomHeader = ({
       edges={["top"]}
     >
       {/* لوگو سمت چپ */}
-      <View
+      <View 
         style={[
           styles.buttonsContainer,
           { borderWidth: 2, borderColor: "black" },
@@ -160,7 +163,9 @@ const MyCustomHeader = ({
             >
               <Text style={styles.buttonText}>خروج</Text>
             </TouchableOpacity>
-            {usersCodeOrName?.codeMoshtari || usersCodeOrName?.nameMoshtari}
+            {/* zare_nk_040935_added_st */}
+            {/* {usersCodeOrName?.codeMoshtari || usersCodeOrName?.nameMoshtari} */}
+             {/* zare_nk_040935_added_end */}
             <Text style={styles.buttonText}>
               {usersCodeOrName?.nameMoshtari
                 ? usersCodeOrName.nameMoshtari
@@ -192,7 +197,7 @@ const MyCustomHeader = ({
         )}
       </View>
 
-      {/* عنوان وسط */}
+      {/* عنوان وسط */}                
       <View
         style={{
           borderWidth: 2,
