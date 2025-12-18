@@ -1,4 +1,4 @@
-// src\components\ReusableButton.tsx    //zare_nk_040926_okk
+// src\components\ReusableButton.tsx    //zare_nk_040927_okk
 import {
   Text,
   TouchableOpacity,

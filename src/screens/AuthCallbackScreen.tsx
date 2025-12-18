@@ -1,4 +1,4 @@
-// AuthCallbackScreen.tsx     //zare_nk_040926_okk
+// AuthCallbackScreen.tsx     //zare_nk_040927_okk
 import React, { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";

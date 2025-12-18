@@ -1,4 +1,4 @@
-// src/screens/SplashScreen.tsx    //zare_nk_040926_okk
+// src/screens/SplashScreen.tsx    //zare_nk_040927_okk
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";

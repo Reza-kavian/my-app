@@ -1,4 +1,4 @@
-//zare_nk_040926_okk
+//zare_nk_040927_okk
 import React, { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";

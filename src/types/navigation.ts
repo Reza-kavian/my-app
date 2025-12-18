@@ -1,4 +1,4 @@
-//src/types/navigation.ts     //zare_nk_040926_okk
+//src/types/navigation.ts     //zare_nk_040927_okk
 export type RootStackParamList = {
   Splash: { target?: keyof RootStackParamList } | undefined;
   Welcome: undefined;

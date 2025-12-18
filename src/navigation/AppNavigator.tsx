@@ -1,4 +1,4 @@
-// src/navigation/AppNavigator.tsx    //zare_nk_040926_okk
+// src/navigation/AppNavigator.tsx    //zare_nk_040927_okk
 // import { NavigationContainer } from "@react-navigation/native";  //zare_nk_040604_commented
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "../screens/SplashScreen";
